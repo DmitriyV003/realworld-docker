@@ -10,11 +10,15 @@ services:
       - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
     depends_on:
       - frontend
+      - api
+      - auth
     networks:
       - realworld-docker-network
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
     container_name: realword-docker-frontend
     command: serve -s build -l 3000
     ports:

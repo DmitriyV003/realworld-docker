@@ -15,5 +15,12 @@ services:
     command: npm run start
     stdin_open: true
     tty: true
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
     volumes:
       - ./frontend/src:/usr/src/app/src
+
+  nginx:
+    volumes:
+      - ./nginx/nginx.conf.dev:/etc/nginx/conf.d/nginx.conf

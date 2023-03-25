@@ -5,14 +5,13 @@ server {
         proxy_pass http://frontend:3000;
     }
 
-    location / {
+    location /api {
         proxy_pass http://api:3001;
         rewrite ^/api/(.*) /$1 break;
     }
 
-    location / {
+    location /auth/api {
         proxy_pass http://auth:3002;
         rewrite ^/auth/api/(.*) /$1 break;
     }
-
 }

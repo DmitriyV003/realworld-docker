@@ -1,0 +1,11 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "frontend",
+      "image": "dmitriy003/multi-frontend",
+      "hostname": "frontend",
+      "essential": false
+    }
+  ]
+}

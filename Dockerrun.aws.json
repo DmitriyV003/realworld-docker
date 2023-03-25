@@ -6,6 +6,31 @@
       "image": "dmitriy003/multi-frontend",
       "hostname": "frontend",
       "essential": false
+    },
+    {
+      "name": "api",
+      "image": "dmitriy003/multi-api",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "auth",
+      "image": "dmitriy003/multi-auth",
+      "hostname": "auth",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "dmitriy003/multi-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["frontend", "api"]
     }
   ]
 }

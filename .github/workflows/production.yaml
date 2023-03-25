@@ -6,7 +6,6 @@ on:
       - closed
 env:
   LOGIN: ${{ secrets.DOCKER_LOGIN }}
-  NAME: ${{ secrets.DOCKER_NAME }}
   PASSWORD: ${{ secrets.DOCKER_PWD }}
 jobs:
   if_merged:
@@ -23,9 +22,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Build images
         run: |
-          docker build -t "${{ env.LOGIN }}/multi-api:"${GITHUB_REF##*/} -f Dockerfile ./api
-          docker build -t "${{ env.LOGIN }}/multi-auth:"${GITHUB_REF##*/} -f Dockerfile ./auth
-          docker build -t "${{ env.LOGIN }}/multi-frontend:"${GITHUB_REF##*/} -f Dockerfile.prod ./frontend
+          docker build -t "${{ env.LOGIN }}/multi-api:"${GITHUB_REF##*/} -f ./api/Dockerfile ./api
+          docker build -t "${{ env.LOGIN }}/multi-auth:"${GITHUB_REF##*/} -f ./auth/Dockerfile ./auth
+          docker build -t "${{ env.LOGIN }}/multi-frontend:"${GITHUB_REF##*/} -f ./frontend/Dockerfile.prod ./frontend
       - name: Push images to docker.io
         run: |
           docker push "${{ env.LOGIN }}/multi-api:"${GITHUB_REF##*/}

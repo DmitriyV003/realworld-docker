@@ -25,7 +25,7 @@ jobs:
           docker build -t "${{ env.LOGIN }}/multi-api:"${GITHUB_REF##*/} -f ./api/Dockerfile ./api
           docker build -t "${{ env.LOGIN }}/multi-auth:"${GITHUB_REF##*/} -f ./auth/Dockerfile ./auth
           docker build -t "${{ env.LOGIN }}/multi-frontend:"${GITHUB_REF##*/} -f ./frontend/Dockerfile.prod ./frontend
-          docker build -t "${{ env.LOGIN }}/multi-nginx:"${GITHUB_REF##*/} -f ./nginx/Dockerfile.prod ./nginx
+          docker build -t "${{ env.LOGIN }}/multi-nginx:"${GITHUB_REF##*/} -f ./nginx/Dockerfile ./nginx
       - name: Push images to docker.io
         run: |
           docker push "${{ env.LOGIN }}/multi-api:"${GITHUB_REF##*/}
